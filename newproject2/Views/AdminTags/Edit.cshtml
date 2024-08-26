@@ -1,9 +1,11 @@
+    @model newproject2.Models.Domain.Tag
 
-@model newproject2.Models.Domain.Tag
-
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="form-card">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        @if (Model != null)
+        {
+             <div class="form-card">
             <h2>Edit</h2>
+            <!-- Edit Form -->
             <form method="post" asp-action="Edit">
                 <div class="form-group">
                     <label asp-for="ID" class="control-label"></label>
@@ -24,5 +26,17 @@
                     <input type="submit" value="Edit" class="btn btn-primary" />
                 </div>
             </form>
+
+            <!-- Delete Button Form -->
+            <form asp-action="Delete" asp-route-id="@Model.ID" method="post">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                </div>
+            </form>
         </div>
+
+        }
+        else{
+            <h2>Tag not found</h2>
+        }
     </div>

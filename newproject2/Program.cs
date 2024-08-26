@@ -1,4 +1,5 @@
 using newproject2.Data;
+using newproject2.Repositories;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbconext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<ITagRepository, TagRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
