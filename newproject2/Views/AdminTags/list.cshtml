@@ -1,0 +1,48 @@
+@model List<newproject2.Models.Domain.Tag>
+
+<div class = "bg-seconddary bg-opacity-10 py-2">
+    <div class = "container">
+        <h1>
+            List of Tags - Admin Functionality
+        </h1>
+    </div>
+
+</div>
+
+<div class = "container" py-5>
+    @if (Model != null && Model.Any())
+    {
+        <table class = "table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Display Name</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tobody>
+                @foreach (var tag in Model)
+                {
+                    <tr>
+                        <td>@tag.ID</td>
+                        <td>@tag.Name</td>
+                        <td>@tag.DisplayName</td>
+                        <td>
+                            <td>
+                                <a asp-area = "" asp-controller="AdminTags" asp-action = "Edit" asp-route-ID = "@tag.ID">Edit</a>
+                            </td>
+
+                        </td>
+                    </tr>
+                }
+            </tobody>
+        </table>
+    }
+    else
+    {
+        <p>No tags found</p>
+    }
+
+
+</div>
