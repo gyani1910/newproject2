@@ -20,8 +20,5 @@ namespace newproject2.Repositories
        Task<Tag?> UpdateAsync(Tag tag);
 
        Task<Tag?> DeleteAsync(Guid ID);
-
-        
-
     }
 }

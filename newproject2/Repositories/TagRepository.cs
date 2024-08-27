@@ -47,11 +47,24 @@ namespace newproject2.Repositories
             return await appdbconext.Tags.FindAsync(ID);
         }
 
+        // public async Task<Tag?> UpdateAsync(Tag tag)
+        // {
+        //     appdbconext.Tags.Update(tag);
+        //     await appdbconext.SaveChangesAsync();
+        //     return tag;
+        // }
+
         public async Task<Tag?> UpdateAsync(Tag tag)
         {
-            appdbconext.Tags.Update(tag);
-            await appdbconext.SaveChangesAsync();
-            return tag;
+            var existingTag = await appdbconext.Tags.FindAsync(tag.ID);
+            if (existingTag != null)
+            {
+                existingTag.DisplayName = tag.DisplayName;
+                existingTag.Name = tag.Name;
+                await appdbconext.SaveChangesAsync();
+                return existingTag;
+            }
+            return null;
         }
 
     }
