@@ -1,5 +1,5 @@
     @model newproject2.Models.ViewModels.EditBlogPostRequest 
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
    
             <div class="form-card">
             <h2>Edit</h2>
@@ -20,10 +20,9 @@
                     <input asp-for="PageTitle" class="form-control"/>
                     <span asp-validation-for="PageTitle" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Content" class="control-label"></label>
-                    <input asp-for="Content" class="form-control" />
-                    <span asp-validation-for="Content" class="text-danger"></span>
+                <div class="mb-3">
+                    <label class="form-label">Content</label>
+                    <textarea class="form-control" id="content" asp-for="Content"></textarea>
                 </div>
                 <div class="form-group">
                     <label asp-for="shortDescription" class="control-label"></label>
@@ -77,4 +76,9 @@
                 </div>
             </form>
         </div>
-    </div>
+</div>
+@section Scripts {
+    <script>
+       var editor = new FroalaEditor('#content');
+    </script>
+}
