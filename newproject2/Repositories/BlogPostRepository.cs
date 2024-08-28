@@ -26,17 +26,24 @@ namespace newproject2.Repositories
 
         public async Task<BlogPost?> DeleteAsync(Guid ID)
         {
-            throw new NotImplementedException();
+            var exblogPost = await dbContext.BlogPosts.FindAsync(ID);
+            if (exblogPost != null)
+            {
+                dbContext.BlogPosts.Remove(exblogPost);
+                await dbContext.SaveChangesAsync();
+                return exblogPost;
+            }
+            return null;
         }
 
         public async Task<IEnumerable<BlogPost>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.BlogPosts.Include(x => x.Tags).ToListAsync();
         }
 
         public async Task<BlogPost?> GetAsync(Guid ID)
         {
-            throw new NotImplementedException();    
+               return await dbContext.BlogPosts.FindAsync(ID);
         }
 
         public async Task<BlogPost?> GetByUrlHandleAsync(string UrlHandel)
@@ -46,8 +53,28 @@ namespace newproject2.Repositories
 
         public async Task<BlogPost?> UpdateAsync(BlogPost blogPost)
         {
-            throw new NotImplementedException();
+            var existingBlog = await dbContext.BlogPosts.Include(x => x.Tags)
+                .FirstOrDefaultAsync(x => x.ID == blogPost.ID);
 
+            if (existingBlog != null)
+            {
+                existingBlog.ID = blogPost.ID;
+                existingBlog.Heading = blogPost.Heading;
+                existingBlog.PageTitle = blogPost.PageTitle;
+                existingBlog.Content = blogPost.Content;
+                existingBlog.shortDescription = blogPost.shortDescription;
+                existingBlog.Author = blogPost.Author;
+                existingBlog.FeaturedImageUrl = blogPost.FeaturedImageUrl;
+                existingBlog.UrlHandel = blogPost.UrlHandel;
+                existingBlog.Visible = blogPost.Visible;
+                existingBlog.PublishedDate = blogPost.PublishedDate;
+                existingBlog.Tags = blogPost.Tags;
+
+                await dbContext.SaveChangesAsync();
+                return existingBlog;
+            }
+
+            return null;
         }
     }
 }

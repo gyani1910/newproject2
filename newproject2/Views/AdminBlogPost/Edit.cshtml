@@ -1,0 +1,80 @@
+    @model newproject2.Models.ViewModels.EditBlogPostRequest 
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+   
+            <div class="form-card">
+            <h2>Edit</h2>
+            <!-- Edit Form -->
+            <form method="post" asp-action="Edit">
+                <div class="form-group">
+                    <label asp-for="ID" class="control-label"></label>
+                    <input asp-for="ID" class="form-control" readonly/>
+                    <span asp-validation-for="ID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Heading" class="control-label"></label>
+                    <input asp-for="Heading" class="form-control"/>
+                    <span asp-validation-for="Heading" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PageTitle" class="control-label"></label>
+                    <input asp-for="PageTitle" class="form-control"/>
+                    <span asp-validation-for="PageTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label"></label>
+                    <input asp-for="Content" class="form-control" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="shortDescription" class="control-label"></label>
+                    <input asp-for="shortDescription" class="form-control" />
+                    <span asp-validation-for="shortDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FeaturedImageUrl" class="control-label"></label>
+                    <input asp-for="FeaturedImageUrl" class="form-control" />
+                    <span asp-validation-for="FeaturedImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UrlHandel" class="control-label"></label>
+                    <input asp-for="UrlHandel" class="form-control" />
+                    <span asp-validation-for="UrlHandel" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PublishedDate" class="control-label"></label>
+                    <input asp-for="PublishedDate" class="form-control" />
+                    <span asp-validation-for="PublishedDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Visible" class="control-label"></label>
+                    <input asp-for="Visible" class="form-control" />
+                    <span asp-validation-for="Visible" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tags</label>
+                        <select class="form-select"
+                            asp-items="@Model.Tags"
+                            asp-for="SelectedTags">
+                        </select>
+                 </div>
+                
+                <div class="form-group">
+                    <input type="submit" value="Edit" class="btn btn-primary" />
+                    <button type="submit"
+                        class="btn btn-danger ms-2"
+                        asp-area=""
+                        asp-controller="AdminBlogPost"
+                        asp-action="Delete">
+                    Delete
+                </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
